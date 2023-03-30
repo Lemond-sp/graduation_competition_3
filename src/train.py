@@ -23,7 +23,7 @@ from transformers import (
     TrainingArguments,
 )
 class GradDataset(Dataset):
-    def __init__(self,X,y=None)]
+    def __init__(self,X,y=None):
         self.X = X
         self.y = y
     
@@ -137,7 +137,9 @@ def main(args):
 
     y_train = load_data(DATA_PATH,"label.train.txt")
     y_dev = load_data(DATA_PATH,"label.dev.txt")
-    
+    y_train = [i+2 for i in list(map(int,y_train))]
+    y_dev = [i+2 for i in list(map(int,y_dev))]
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     # train parameter
