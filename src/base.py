@@ -92,7 +92,7 @@ def train(args, X_train, y_train,X_dev,y_dev,X_test):
         save_strategy="epoch",
         save_total_limit=3, # limit the total amount of checkpoints. Deletes the older checkpoints.
         #label_smoothing_factor=args.label_smoothing_factor,
-        remove_unused_columns=False, # 
+        remove_unused_columns=False, # https://zenn.dev/ken_11/articles/2e54faf7ac3014 自前のデータセットの場合は、Falseにするのがいい（datasets.Datasetと同じ構造でない限り）
         load_best_model_at_end=True, # load the best model after training
         metric_for_best_model=args.metric_for_best_model, # 
         seed=args.seed,
@@ -144,9 +144,12 @@ def main(args):
         x_train, y_train,x_dev,y_dev,x_test,
     )
     print(y_preds)
-    with open('/home/kajikawa_r/competition/gradcomp/ch03/submission/eval.txt','w') as f:
-        for line in y_preds:
-            f.write(line + "\n")
+    # submit
+    with open(args.sub_file,'w') as f:
+        for y_pred in y_preds:
+            y_pred = int(y_pred) - 2
+            y_pred = str(y_pred)
+            f.write(y_pred + "\n")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -159,10 +162,10 @@ if __name__ == "__main__":
     parser.add_argument("--learning_rate", type=float, default=3e-5)
     parser.add_argument("--lr_scheduler_type", type=str, default="linear")
     parser.add_argument("--warmup_steps", type=int, default=0)
-    parser.add_argument("--epochs", type=int, default=30)
+    parser.add_argument("--epochs", type=int, default=10)
     parser.add_argument("--label_smoothing_factor", type=float, default=0.2)
     parser.add_argument("--metric_for_best_model", type=str, default="QWK") # qwk
-    parser.add_argument("--early_stopping_patience", type=int, default=10)
+    parser.add_argument("--early_stopping_patience", type=int, default=3)
     parser.add_argument("--seed", type=int, default=42)
     # PATH
     parser.add_argument("--data_dir", default="/home/kajikawa_r/competition/gradcomp/data")
