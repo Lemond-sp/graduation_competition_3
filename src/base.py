@@ -3,6 +3,7 @@ MODEL_PATH = ''
 
 from make_list import load_data
 
+import json
 import argparse
 import os
 import random
@@ -157,9 +158,9 @@ if __name__ == "__main__":
     parser.add_argument("--model_name", type=str, default="studio-ousia/luke-japanese-large-lite")
     parser.add_argument("--model_name_short", type=str,default="large-lite")
     parser.add_argument("--max_length", type=int, default=256)
-    parser.add_argument("--batch_size", type=int, default=16)
+    parser.add_argument("--batch_size", type=int, default=64)
     parser.add_argument("--gradient_accumulation_steps", default=1, type=int)
-    parser.add_argument("--learning_rate", type=float, default=3e-5)
+    parser.add_argument("--learning_rate", type=float, default=3e-6)
     parser.add_argument("--lr_scheduler_type", type=str, default="linear")
     parser.add_argument("--warmup_steps", type=int, default=0)
     parser.add_argument("--epochs", type=int, default=10)
@@ -168,8 +169,13 @@ if __name__ == "__main__":
     parser.add_argument("--early_stopping_patience", type=int, default=3)
     parser.add_argument("--seed", type=int, default=42)
     # PATH
+    parser.add_argument("--prepro_dir", default="/home/kajikawa_r/competition/gradcomp/data")
     parser.add_argument("--data_dir", default="/home/kajikawa_r/competition/gradcomp/data")
     parser.add_argument("--save_model_dir", default="/home/kajikawa_r/competition/gradcomp/ch03/model")
     parser.add_argument("--sub_file", default="/home/kajikawa_r/competition/gradcomp/ch03/submission/sub.txt")
     args = parser.parse_args()
+
+    # save parameters (json)
+    with open('./params.json',mode='w') as f:
+        json.dump(args.__dict__,f,indent=4)
     main(args)
