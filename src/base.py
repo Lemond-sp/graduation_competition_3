@@ -1,5 +1,3 @@
-DATA_PATH = '/home/kajikawa_r/competition/gradcomp/data'
-MODEL_PATH = ''
 
 from make_list import load_data
 
@@ -75,7 +73,7 @@ def train(args, X_train, y_train,X_dev,y_dev,X_test):
     validation_dataset = GradDataset(X_dev, y_dev)
 
     model = AutoModelForSequenceClassification.from_pretrained(args.model_name,num_labels=5)
-    model.gradient_checkpointing_enable()
+    # model.gradient_checkpointing_enable() apply grad-base.py
     
     # https://huggingface.co/docs/transformers/v4.20.0/en/main_classes/trainer#transformers.TrainingArguments
 
@@ -87,6 +85,7 @@ def train(args, X_train, y_train,X_dev,y_dev,X_test):
         per_device_train_batch_size=args.batch_size,
         per_device_eval_batch_size=args.batch_size,
         gradient_accumulation_steps=args.gradient_accumulation_steps,
+        fp16=args.fp16,
         learning_rate=args.learning_rate,
         num_train_epochs=args.epochs,
         # log_level="critical",
@@ -129,9 +128,9 @@ def main(args):
     seed_everything(args.seed)
     
     # set data
-    x_train = load_data(args.data_dir,"text.train.txt")
-    x_test = load_data(args.data_dir,"text.test.txt")
-    x_dev = load_data(args.data_dir,"text.dev.txt")
+    x_train = load_data(args.prepro_dir,"text.train.txt")
+    x_test = load_data(args.prepro_dir,"text.test.txt")
+    x_dev = load_data(args.prepro_dir,"text.dev.txt")
 
     y_train = load_data(args.data_dir,"label.train.txt")
     y_dev = load_data(args.data_dir,"label.dev.txt")
@@ -160,6 +159,7 @@ if __name__ == "__main__":
     parser.add_argument("--max_length", type=int, default=256)
     parser.add_argument("--batch_size", type=int, default=64)
     parser.add_argument("--gradient_accumulation_steps", default=1, type=int)
+    parser.add_argument("--fp16", default=True, type=bool)    
     parser.add_argument("--learning_rate", type=float, default=3e-6)
     parser.add_argument("--lr_scheduler_type", type=str, default="linear")
     parser.add_argument("--warmup_steps", type=int, default=0)
@@ -172,10 +172,11 @@ if __name__ == "__main__":
     parser.add_argument("--prepro_dir", default="/home/kajikawa_r/competition/gradcomp/data")
     parser.add_argument("--data_dir", default="/home/kajikawa_r/competition/gradcomp/data")
     parser.add_argument("--save_model_dir", default="/home/kajikawa_r/competition/gradcomp/ch03/model")
+    parser.add_argument("--save_param_dir", default="/home/kajikawa_r/competition/gradcomp/ch03/logs/params.json")
     parser.add_argument("--sub_file", default="/home/kajikawa_r/competition/gradcomp/ch03/submission/sub.txt")
     args = parser.parse_args()
 
     # save parameters (json)
-    with open('./params.json',mode='w') as f:
+    with open(args.save_param_dir,mode='w') as f:
         json.dump(args.__dict__,f,indent=4)
     main(args)
