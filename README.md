@@ -34,11 +34,14 @@ F1はmacro平均によるもの
 | ------------- | ------------- | ------------- |
 |cl-tohoku/bert-base-japanese-v2  | wmt20(en)  | wmt20(en)  |
 |cl-tohoku/bert-large-japanese|   |  |
+|||
 |studio-ousia/luke-japanese-large|   |  |
 |megagonlabs/electra-base-japanese-discriminator|   |  |
+|||
 |nlp-waseda/roberta-large-japanese|   |  |
 |ku-nlp/deberta-v2-base-japanese|   |  |
 |ku-nlp/deberta-v2-large-japanese|   |  |
+|||
 |xlm-roberta-large|   |  |
 
 2.testに対するQWKの表
