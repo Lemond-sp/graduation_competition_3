@@ -36,6 +36,7 @@ F1はmacro平均によるもの。すべての値は%表記。
 |cl-tohoku/bert-large-japanese|56.4|41.6|
 |||
 |studio-ousia/luke-japanese-large|63.6|47.0|
+|studio-ousia/luke-japanese-large-lite|59.2|40.3|
 |megagonlabs/electra-base-japanese-discriminator|53.4|42.4|
 |||
 |nlp-waseda/roberta-large-japanese|63.0|45.5|
@@ -43,6 +44,8 @@ F1はmacro平均によるもの。すべての値は%表記。
 |ku-nlp/deberta-v2-large-japanese|62.8|46.0|
 |||
 |xlm-roberta-large|59.9|46.0|
+|xlm-roberta-large（ja-en）|||
+
 
 2.testに対するQWKの表
 | base-models  | QWK |
@@ -51,11 +54,13 @@ F1はmacro平均によるもの。すべての値は%表記。
 |cl-tohoku/bert-large-japanese|55.6|
 ||
 |studio-ousia/luke-japanese-large|   |
-|megagonlabs/electra-base-japanese-discriminator|   |
+|studio-ousia/luke-japanese-large-lite|   |
+|megagonlabs/electra-base-japanese-discriminator|57.6|
 ||
 |nlp-waseda/roberta-large-japanese|   |
 |ku-nlp/deberta-v2-base-japanese|   |
 |ku-nlp/deberta-v2-large-japanese|   |
 ||
 |xlm-roberta-large|   |
+|xlm-roberta-large（ja-en）||
 ## 工夫点
