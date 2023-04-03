@@ -16,11 +16,14 @@
   - 第二回 : 外部データ(事前学習)を使用しない
   - 第三回 : モデル制約なし⭕️
 
-## 制約
+## GPU制約
 - 1人が同時に使えるGPUは1枚まで
 - コンペに使えるのはTITAN RTXを搭載したサーバのみ（lepin, dyquem, luce, opus1, opus2, opus3）
 - cuda :10.2（lepin, dyquem）
 - cuda :11.3（opus[1-3], luce）
 
 # 解法
-## 擬似ラベル(Pseudo-Label)による半教師あり学習
+## BERTによる感情極性分類タスク
+
+
+## 工夫点
