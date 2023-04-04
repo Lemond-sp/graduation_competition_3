@@ -23,11 +23,22 @@
 - cuda :11.3（opus[1-3], luce）
 
 # 解法
-## BERTによる感情極性分類タスク
+## 工夫点
+- [日本語言語理解ベンチマーク（JGLUE）](https://zenn.dev/hellorusk/articles/8e73cd5fb8f58e)を参考にLLMを採用した。
+- 多言語モデルに対して、入力文を「日本語」「日本語[SEP]英語（翻訳文）」の２種類を実行した。
+  - 翻訳文は、[JParaCrawl v3.0（big）](https://www.kecl.ntt.co.jp/icl/lirg/jparacrawl/)で日英翻訳したもの。
 
-1.validに対するQWKの表
+
+|表情筋が衰えてきてる。まずいな…[SEP]The facial muscles are waning.It's bad...|
+|-|
+
+|すき焼きに卵美味しそう〜[SEP]Sukiyaki and Eggs Look Delicious~|
+|-|
+
+## 感情分析による評価実験
 
 ### 大規模言語モデルの評価実験
+1.validに対するQWKの表
 
 F1はmacro平均によるもの。すべての値は%表記。
 
@@ -55,7 +66,7 @@ F1はmacro平均によるもの。すべての値は%表記。
 
 
 2.testに対するQWKの表
-| base-models  | QWK |
+| models  | QWK |
 | ------------- | ------------- |
 |cl-tohoku/bert-base-japanese-v2  |52.4|
 |cl-tohoku/bert-large-japanese|55.6|
@@ -77,15 +88,6 @@ F1はmacro平均によるもの。すべての値は%表記。
 |studio-ousia/mluke-large-lite|58.8|
 |studio-ousia/mluke-large-lite（ja-en）|**59.3**|
 
-実験の結果、入力文は単言語よりも２言語を入力するほうが、性能が向上することを確認できた。
-## 工夫点
-- [日本語言語理解ベンチマーク（JGLUE）](https://zenn.dev/hellorusk/articles/8e73cd5fb8f58e)を参考にLLMを採用した。
-- 多言語モデルに対して、入力文を「日本語」「日本語[SEP]英語（翻訳文）」の２種類を実行した。
-  - 翻訳文は、[JParaCrawl v3.0（big）](https://www.kecl.ntt.co.jp/icl/lirg/jparacrawl/)で日英翻訳したもの。
+実験の結果、入力文は単言語よりも２言語を入力するほうが、性能が向上することを確認できた。また、パラメータ数が多いlargeモデルの精度が高いことがわかる。
 
-
-|表情筋が衰えてきてる。まずいな…[SEP]The facial muscles are waning.It's bad...|
-|-|
-
-|すき焼きに卵美味しそう〜[SEP]Sukiyaki and Eggs Look Delicious~|
-|-|
+以下のデータより、「」と「」をアンサンブルを行った。
