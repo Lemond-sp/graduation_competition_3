@@ -23,7 +23,7 @@
 - cuda :11.3（opus[1-3], luce）
 
 # 解法
-## 工夫点
+## 概要
 - [日本語言語理解ベンチマーク（JGLUE）](https://zenn.dev/hellorusk/articles/8e73cd5fb8f58e)を参考にLLMを採用した。
 - 多言語モデルに対して、入力文を「日本語」「日本語[SEP]英語（翻訳文）」の２種類を実行した。
   - 翻訳文は、[JParaCrawl v3.0（big）](https://www.kecl.ntt.co.jp/icl/lirg/jparacrawl/)で日英翻訳したもの。
@@ -71,13 +71,13 @@ F1はmacro平均によるもの。すべての値は%表記。
 |cl-tohoku/bert-base-japanese-v2  |52.4|
 |cl-tohoku/bert-large-japanese|55.6|
 ||
-|studio-ousia/luke-japanese-large|   |
-|studio-ousia/luke-japanese-large-lite|   |
+|studio-ousia/luke-japanese-large|**65.9**|
+|studio-ousia/luke-japanese-large-lite|65.1|
 |megagonlabs/electra-base-japanese-discriminator|57.6|
 ||
-|nlp-waseda/roberta-large-japanese|   |
+|nlp-waseda/roberta-large-japanese|64.3|
 |ku-nlp/deberta-v2-base-japanese|62.9|
-|ku-nlp/deberta-v2-large-japanese|   |
+|ku-nlp/deberta-v2-large-japanese|64.9|
 
 | multi-models  | QWK |
 | ------------- | ------------- |
@@ -88,6 +88,7 @@ F1はmacro平均によるもの。すべての値は%表記。
 |studio-ousia/mluke-large-lite|58.8|
 |studio-ousia/mluke-large-lite（ja-en）|**59.3**|
 
-実験の結果、入力文は単言語よりも２言語を入力するほうが、性能が向上することを確認できた。また、パラメータ数が多いlargeモデルの精度が高いことがわかる。
+実験の結果、入力文は単言語よりも２言語を入力するほうが、性能が向上することを確認できた。
+また、パラメータ数が多いlargeモデルの精度が高いことがわかる。
 
-以下のデータより、「」と「」をアンサンブルを行った。
+以下のデータより、「早稲田RoBERTa」と「京大DeBERTa」、「LUKE-large(lite)」によるアンサンブルを行った。
