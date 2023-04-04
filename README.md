@@ -25,7 +25,7 @@
 - [日本語言語理解ベンチマーク（JGLUE）](https://zenn.dev/hellorusk/articles/8e73cd5fb8f58e)を参考にLLMを採用した。
 - 多言語モデルに対して、入力文を「日本語」「日本語[SEP]英語（翻訳文）」の２種類を実行した。
   - 翻訳文は、[JParaCrawl v3.0（big）](https://www.kecl.ntt.co.jp/icl/lirg/jparacrawl/)で日英翻訳したもの。
-- 実験の結果より、「早稲田RoBERTa」と「京大DeBERTa」、「LUKE-large(lite)」によるアンサンブルを行った。
+- 実験の結果より、「早稲田RoBERTa」と「京大DeBERTa」、「LUKE-large」、「LUKE-large-lite」によるアンサンブルを行った。
 
 
 |表情筋が衰えてきてる。まずいな…[SEP]The facial muscles are waning.It's bad...|
