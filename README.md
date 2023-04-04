@@ -24,26 +24,28 @@
 
 # 解法
 ## BERTによる感情極性分類タスク
-- 表を載せる
 
 1.validに対するQWKの表
 
-8モデルに対する評価：
+### 大規模言語モデルの評価実験
+
 F1はmacro平均によるもの。すべての値は%表記。
 
-| base-models  | QWK | F1  |
+| models  | QWK | F1  |
 | ------------- | ------------- | ------------- |
 |cl-tohoku/bert-base-japanese-v2  |52.2|41.1|
 |cl-tohoku/bert-large-japanese|56.4|41.6|
 |||
-|studio-ousia/luke-japanese-large|63.6|47.0|
+|studio-ousia/luke-japanese-large|**63.6**|**47.0**|
 |studio-ousia/luke-japanese-large-lite|59.2|40.3|
 |megagonlabs/electra-base-japanese-discriminator|53.4|42.4|
 |||
 |nlp-waseda/roberta-large-japanese|63.0|45.5|
 |ku-nlp/deberta-v2-base-japanese|59.1|43.9|
 |ku-nlp/deberta-v2-large-japanese|62.8|46.0|
-|||
+
+| multi-models  | QWK | F1  |
+| ------------- | ------------- | ------------- |
 |xlm-roberta-large|59.9|46.0|
 |xlm-roberta-large（ja-en）|59.1|44.4|
 |studio-ousia/mluke-large|59.4|44.1|
@@ -65,13 +67,17 @@ F1はmacro平均によるもの。すべての値は%表記。
 |nlp-waseda/roberta-large-japanese|   |
 |ku-nlp/deberta-v2-base-japanese|62.9|
 |ku-nlp/deberta-v2-large-japanese|   |
-||
+
+| multi-models  | QWK |
+| ------------- | ------------- |
 |xlm-roberta-large|59.0|
-|xlm-roberta-large（ja-en）|59.9|
+|xlm-roberta-large（ja-en）|**59.9**|
 |studio-ousia/mluke-large|58.4|
-|studio-ousia/mluke-large（ja-en）|59.8|
+|studio-ousia/mluke-large（ja-en）|**59.8**|
 |studio-ousia/mluke-large-lite|58.8|
-|studio-ousia/mluke-large-lite（ja-en）|59.3|
+|studio-ousia/mluke-large-lite（ja-en）|**59.3**|
+
+実験の結果、入力文は単言語よりも２言語を入力するほうが、性能が向上することを確認できた。
 ## 工夫点
 - [日本語言語理解ベンチマーク（JGLUE）](https://zenn.dev/hellorusk/articles/8e73cd5fb8f58e)を参考にLLMを採用した。
 - 多言語モデルに対して、入力文を「日本語」「日本語[SEP]英語（翻訳文）」の２種類を実行した。
