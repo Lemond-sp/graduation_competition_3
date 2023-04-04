@@ -46,10 +46,10 @@ F1はmacro平均によるもの。すべての値は%表記。
 |||
 |xlm-roberta-large|59.9|46.0|
 |xlm-roberta-large（ja-en）|59.1|44.4|
-|studio-ousia/mluke-large|||
+|studio-ousia/mluke-large|59.4|44.1|
 |studio-ousia/mluke-large（ja-en）|58.4|43.1|
-|studio-ousia/mluke-large-lite|||
-|studio-ousia/mluke-large-lite（ja-en）|||
+|studio-ousia/mluke-large-lite|58.7|44.2|
+|studio-ousia/mluke-large-lite（ja-en）|57.7|42.7|
 
 
 2.testに対するQWKの表
@@ -68,10 +68,10 @@ F1はmacro平均によるもの。すべての値は%表記。
 ||
 |xlm-roberta-large|59.0|
 |xlm-roberta-large（ja-en）|59.9|
-|studio-ousia/mluke-large||
+|studio-ousia/mluke-large|58.4|
 |studio-ousia/mluke-large（ja-en）|59.8|
-|studio-ousia/mluke-large-lite||
-|studio-ousia/mluke-large-lite（ja-en）||
+|studio-ousia/mluke-large-lite|58.8|
+|studio-ousia/mluke-large-lite（ja-en）|59.3|
 ## 工夫点
 - [日本語言語理解ベンチマーク（JGLUE）](https://zenn.dev/hellorusk/articles/8e73cd5fb8f58e)を参考にLLMを採用した。
 - 多言語モデルに対して、入力文を「日本語」「日本語[SEP]英語（翻訳文）」の２種類を実行した。
