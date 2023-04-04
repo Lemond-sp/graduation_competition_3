@@ -27,7 +27,8 @@
 - 表を載せる
 
 1.validに対するQWKの表
-8モデルに対する評価
+
+8モデルに対する評価：
 F1はmacro平均によるもの。すべての値は%表記。
 
 | base-models  | QWK | F1  |
@@ -44,7 +45,11 @@ F1はmacro平均によるもの。すべての値は%表記。
 |ku-nlp/deberta-v2-large-japanese|62.8|46.0|
 |||
 |xlm-roberta-large|59.9|46.0|
-|xlm-roberta-large（ja-en）|||
+|xlm-roberta-large（ja-en）|59.1|44.4|
+|studio-ousia/mluke-large|||
+|studio-ousia/mluke-large（ja-en）|58.4|43.1|
+|studio-ousia/mluke-large-lite|||
+|studio-ousia/mluke-large-lite（ja-en）|||
 
 
 2.testに対するQWKの表
@@ -58,9 +63,23 @@ F1はmacro平均によるもの。すべての値は%表記。
 |megagonlabs/electra-base-japanese-discriminator|57.6|
 ||
 |nlp-waseda/roberta-large-japanese|   |
-|ku-nlp/deberta-v2-base-japanese|   |
+|ku-nlp/deberta-v2-base-japanese|62.9|
 |ku-nlp/deberta-v2-large-japanese|   |
 ||
-|xlm-roberta-large|   |
-|xlm-roberta-large（ja-en）||
+|xlm-roberta-large|59.0|
+|xlm-roberta-large（ja-en）|59.9|
+|studio-ousia/mluke-large||
+|studio-ousia/mluke-large（ja-en）|59.8|
+|studio-ousia/mluke-large-lite||
+|studio-ousia/mluke-large-lite（ja-en）||
 ## 工夫点
+- [日本語言語理解ベンチマーク（JGLUE）](https://zenn.dev/hellorusk/articles/8e73cd5fb8f58e)を参考にLLMを採用した。
+- 多言語モデルに対して、入力文を「日本語」「日本語[SEP]英語（翻訳文）」の２種類を実行した。
+  - 翻訳文は、[JParaCrawl v3.0（big）](https://www.kecl.ntt.co.jp/icl/lirg/jparacrawl/)で日英翻訳したもの。
+
+
+|表情筋が衰えてきてる。まずいな…[SEP]The facial muscles are waning.It's bad...|
+|-|
+
+|すき焼きに卵美味しそう〜[SEP]Sukiyaki and Eggs Look Delicious~|
+|-|
