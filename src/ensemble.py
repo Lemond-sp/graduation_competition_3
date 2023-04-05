@@ -19,8 +19,8 @@ if __name__ == "__main__":
     # train parameter
     parser.add_argument("--file_dir01", type=str, default="/home/kajikawa_r/competition/gradcomp/ch03/submission/large/large-exp01.txt")
     parser.add_argument("--file_dir02", type=str, default="/home/kajikawa_r/competition/gradcomp/ch03/submission/l-lite/large.txt")
-    parser.add_argument("--file_dir03", type=str, default="/home/kajikawa_r/competition/gradcomp/ch03/submission/l-lite/large.txt")
+    parser.add_argument("--file_dir03", type=str, default="/home/kajikawa_r/competition/gradcomp/ch03/submission/large-deberta/exp01.txt")
     parser.add_argument("--file_dir04", type=str, default="/home/kajikawa_r/competition/gradcomp/ch03/submission/large-waseda/exp01.txt")
-    parser.add_argument("--res_dir", type=str, default="/home/kajikawa_r/competition/gradcomp/ch03/submission/ensemble/aa_ensem.txt")
+    parser.add_argument("--res_dir", type=str, default="/home/kajikawa_r/competition/gradcomp/ch03/submission/ensemble/all_ensem.txt")
     args = parser.parse_args()
     main(args)
