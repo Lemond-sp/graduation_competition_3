@@ -25,7 +25,8 @@
 - [日本語言語理解ベンチマーク（JGLUE）](https://zenn.dev/hellorusk/articles/8e73cd5fb8f58e)を参考にLLMを採用した。
 - 多言語モデルに対して、入力文を「日本語」「日本語[SEP]英語（翻訳文）」の２種類を実行した。
   - 翻訳文は、[JParaCrawl v3.0（big）](https://www.kecl.ntt.co.jp/icl/lirg/jparacrawl/)で日英翻訳したもの。
-- 実験の結果より、「早稲田RoBERTa」と「京大DeBERTa」、「LUKE-large」、「LUKE-large-lite」によるアンサンブルを行った。
+  - 実験の結果、testデータに対するQWKの性能改善を確認した。
+- 「早稲田RoBERTa」と「京大DeBERTa」、「LUKE-large」、「LUKE-large-lite」によるアンサンブルを行った。
 
 
 |表情筋が衰えてきてる。まずいな…[SEP]The facial muscles are waning.It's bad...|
@@ -36,11 +37,13 @@
 
 
 ## 感情分析による評価実験
-
-### 大規模言語モデルの評価実験
-1.validに対するQWKの表
+valid,testデータに対する評価実験を行った。
 
 F1はmacro平均によるもの。すべての値は%表記。
+
+
+### 大規模言語モデルの評価実験（valid）
+
 
 | models  | QWK | F1  |
 | ------------- | ------------- | ------------- |
@@ -55,6 +58,9 @@ F1はmacro平均によるもの。すべての値は%表記。
 |ku-nlp/deberta-v2-base-japanese|59.1|43.9|
 |ku-nlp/deberta-v2-large-japanese|62.8|46.0|
 
+
+### 多言語モデル
+
 | multi-models  | QWK | F1  |
 | ------------- | ------------- | ------------- |
 |xlm-roberta-large|59.9|46.0|
@@ -65,7 +71,8 @@ F1はmacro平均によるもの。すべての値は%表記。
 |studio-ousia/mluke-large-lite（ja-en）|57.7|42.7|
 
 
-2.testに対するQWKの表
+### 大規模言語モデルの評価実験（test）
+
 | models  | QWK |
 | ------------- | ------------- |
 |cl-tohoku/bert-base-japanese-v2  |52.4|
@@ -79,6 +86,9 @@ F1はmacro平均によるもの。すべての値は%表記。
 |ku-nlp/deberta-v2-base-japanese|62.9|
 |ku-nlp/deberta-v2-large-japanese|64.9|
 
+
+### 多言語モデル
+
 | multi-models  | QWK |
 | ------------- | ------------- |
 |xlm-roberta-large|59.0|
@@ -89,4 +99,5 @@ F1はmacro平均によるもの。すべての値は%表記。
 |studio-ousia/mluke-large-lite（ja-en）|**59.3**|
 
 実験の結果、入力文は単言語よりも２言語を入力するほうが、性能が向上することを確認できた。
+
 また、パラメータ数が多いlargeモデルの精度が高いことがわかる。
